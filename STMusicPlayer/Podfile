@@ -1,0 +1,6 @@
+platform :ios, ‘8.0’
+target ‘STMusicPlayer’ do
+
+pod 'FreeStreamer', '~> 3.7.3'
+
+end
