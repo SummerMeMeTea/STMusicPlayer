@@ -1,30 +1,74 @@
 //
-//  ViewController.m
+//  STDiscoverMusicViewController.m
 //  STMusicPlayer
 //
-//  Created by Lan on 2017/6/15.
+//  Created by Nie on 2017/6/15.
 //  Copyright © 2017年 SummerMeMeTea. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "STDiscoverMusicViewController.h"
 #import <FreeStreamer/FSAudioStream.h>
 
-@interface ViewController ()
+@interface STDiscoverMusicViewController ()
 
 @property(nonatomic, strong) FSAudioStream *audioStream;
 
 @end
 
-@implementation ViewController
+@implementation STDiscoverMusicViewController
 
-- (void)viewDidLoad
-{
+#pragma mark - Life cycle
+
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self setupNavbar];
+    [self setupSubviews];
+    [self fetchData];
 }
 
+#pragma mark - Setup navbar
+
+- (void)setupNavbar {
+    
+}
+
+#pragma mark - Setup subViews
+
+- (void)setupSubviews {
+    self.view.backgroundColor = [UIColor ms_backgroundColor];
+    
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"发现音乐";
+    label.textColor = [UIColor ms_blackColor];
+    label.font = [UIFont systemFontOfSize:25];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.backgroundColor = [UIColor randomColor];
+    
+    [self.view addSubview:label];
+    [label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.left.and.right.equalTo(self.view);
+        make.height.equalTo(@100);
+    }];
+}
+
+#pragma mark - Layout
+
+- (void)updateViewConstraints {
+    
+    [super updateViewConstraints];
+}
+
+#pragma mark - Fetch data
+
+- (void)fetchData {
+    
+}
+
+#pragma mark - Event Handler
 //改变播放位置 progress:0(开始)-1(结尾)
-- (void)seekWithValue: (CGFloat)progress
-{
+- (void)seekWithValue: (CGFloat)progress {
     int seconds = progress * self.audioStream.duration.playbackTimeInSeconds;
     int min = seconds/60;
     int second = seconds%60;
@@ -33,26 +77,24 @@
 }
 
 //播放/暂停
-- (void)playOrPause:(UIButton *)button
-{
+- (void)playOrPause:(UIButton *)button {
     if (self.audioStream.isPlaying) {
         [self.audioStream pause];
     }else{
-        [self.audioStream pause];
+        [self.audioStream play];
     }
 }
 
+#pragma mark - Getter
+
 //音频地址
--(NSURL *)getFileUrl
-{
+- (NSURL *)getFileUrl {
     return [NSURL URLWithString:@"http://audio.xmcdn.com/group15/M00/6B/FA/wKgDZVc6yBCjkn7AACdnGevNZjg091.mp3"];
 }
 
 //播放器
--(FSAudioStream *)audioStream
-{
-    if (!_audioStream)
-    {
+- (FSAudioStream *)audioStream {
+    if (!_audioStream) {
         _audioStream=[[FSAudioStream alloc]initWithUrl:[self getFileUrl]];
         _audioStream.onFailure=^(FSAudioStreamError error,NSString *description){
             NSLog(@"播放过程中发生错误，错误信息：%@",description);
@@ -63,6 +105,7 @@
     }
     return _audioStream;
 }
+
 
 @end
 
@@ -87,3 +130,4 @@
  9
  http://audio.xmcdn.com/group13/M01/6D/D4/wKgDXVc6x4Tx0gJfANu5kBxLUyo956.mp3
  */
+

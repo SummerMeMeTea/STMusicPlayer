@@ -1,0 +1,18 @@
+//
+//  ST-PrefixHeader.pch
+//  STMusicPlayer
+//
+//  Created by Nie on 2017/6/15.
+//  Copyright © 2017年 SummerMeMeTea. All rights reserved.
+//
+
+#ifndef ST_PrefixHeader_pch
+#define ST_PrefixHeader_pch
+
+#ifdef __OBJC__
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import "STMusicPlayerHeader.h"
+
+#endif
+#endif /* ST_PrefixHeader_pch */

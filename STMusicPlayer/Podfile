@@ -2,5 +2,15 @@ platform :ios, ‘8.0’
 target ‘STMusicPlayer’ do
 
 pod 'FreeStreamer', '~> 3.7.3'
+pod 'AFNetworking', '~> 3.1.0'
+pod 'MBProgressHUD','~> 1.0.0'
+pod 'SDWebImage', '~> 3.8.1'
+pod 'Masonry', '~> 1.0.2'
+pod 'MJRefresh', '~> 3.1.12'
+pod 'MJExtension', '~> 3.0.13'
+pod 'CocoaLumberjack', '~> 2.3.0'
+pod 'FLEX', :configurations => ['Debug']
+pod 'ReactiveCocoa', '~> 2.5'
+pod 'OpenUDID', '~> 1.0.0'
 
 end

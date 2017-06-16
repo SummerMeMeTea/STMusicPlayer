@@ -7,8 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import "STTabBarController.h"
+#if DEBUG
+#import "FLEX.h"
+#endif
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) STTabBarController *tabBarController;
 
 @end
 
@@ -16,7 +22,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+    
+    self.tabBarController = [[STTabBarController alloc]init];
+    self.window.rootViewController = self.tabBarController;
+
+#if DEBUG
+    [[FLEXManager sharedManager] showExplorer];
+#endif
     return YES;
 }
 
